@@ -12,6 +12,7 @@ def main(argv):
     output_file = ''
     delimiter = ','
     endofline = '\n'
+    utf8alias = ['utf-8', 'U8', 'UTF', 'utf8', 'cp65001']
     usage = argv[0] + ' -c <confsfile> -i <inputfile> -o <outputfile>'
 
     try:
@@ -40,8 +41,14 @@ def main(argv):
         confs_fp = open(confs_file, mode='r')
         confs = json.load(confs_fp)
 
-        input_fp = open(input_file, mode='r', encoding=confs['FixedWidthEncoding'])
-        output_fp = open(output_file, mode='w', encoding=confs['DelimitedEncoding'])
+        in_encoding = confs['FixedWidthEncoding']
+        input_fp = open(input_file, mode='r', encoding=in_encoding)
+
+        out_encoding = confs['DelimitedEncoding']
+        # UTF8 with BOM for opening correctly by MS Excel
+        if out_encoding in utf8alias:
+            out_encoding = 'utf-8-sig'
+        output_fp = open(output_file, mode='w', encoding=out_encoding)
 
         if confs['IncludeHeader'].upper() == 'TRUE':
             fields = ','.join(confs['ColumnNames']) + endofline
