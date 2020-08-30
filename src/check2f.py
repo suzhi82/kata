@@ -79,7 +79,7 @@ def main(argv):
 
         print("Passing rate: {0}/{1}".format((line_count - len(line_error)), line_count))
         if len(line_error):
-            print("Error found in line: " + " ".join(map(str, line_error)))
+            print("Error found in line: " + repr(line_error))
 
         # Determine whether the inputfile2 has extra content
         line2 = input_fp2.readline()
