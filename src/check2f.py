@@ -59,6 +59,8 @@ def main(argv):
         line1 = input_fp1.readline()
         if confs['IncludeHeader'].upper() == 'TRUE':
             input_fp2.readline()
+
+        # Compare the contents of inputfile1 and inputfile2
         while line1.strip():
             line_count += 1
             line2 = str.split(input_fp2.readline(), ',')
@@ -76,7 +78,16 @@ def main(argv):
             line1 = input_fp1.readline()
 
         print("Passing rate: {0}/{1}".format((line_count - len(line_error)), line_count))
-        print("Error found in line: " + " ".join(map(str, line_error)))
+        if len(line_error):
+            print("Error found in line: " + " ".join(map(str, line_error)))
+
+        # Determine whether the inputfile2 has extra content
+        line2 = input_fp2.readline()
+        while line2:
+            if line2.strip():
+                print("Warning: {0} has extra content".format(input_file2))
+                break
+            line2 = input_fp2.readline()
 
     except:
         print("Unexpected error:", sys.exc_info()[0])

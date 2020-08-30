@@ -43,7 +43,7 @@ docker run -it --rm -v $PWD:/usr/src/app -w /usr/src/app mypython3:sz82 \
 ~~~
 
 
-## Check 
+## Check Parsing Result File
 ~~~bash
 docker run -it --rm -v $PWD:/usr/src/app -w /usr/src/app mypython3:sz82 \
   python3 check2f.py -c spec.json -i text.log,text.csv
