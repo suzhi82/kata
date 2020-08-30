@@ -40,7 +40,7 @@ def main(argv):
         print(usage)
         sys.exit(1)
 
-    # Prompt files' name
+    # Prompt files name
     print(
         "confs_file = {0}\ninput_file = {1}\noutput_file = {2}"
         .format(confs_file, input_file, output_file)
@@ -62,7 +62,7 @@ def main(argv):
             out_encoding = 'utf-8-sig'
         output_fp = open(output_file, mode='w', encoding=out_encoding)
 
-        # Prompt input output encoding
+        # Prompt for input and output encoding
         print("{0} ==> {1}".format(input_fp.encoding, output_fp.encoding))
 
         # Determine whether to add column headers

@@ -14,7 +14,7 @@ cd kata/src && ls -1
 
 
 ## Demo Shell Script
-You can use the command below to make life easier.​ :smirk:
+You can simply use the command below to make life easier.​ :smirk:
 ~~~bash
 bash demo.sh
 ~~~
