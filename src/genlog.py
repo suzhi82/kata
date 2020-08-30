@@ -10,11 +10,12 @@ import sys
 def main(argv):
     confs_file = 'spec.json'
     output_file = 'test.log'
-    line_count = 100
+    line_count = 150
     endofline = '\n'
     usage = argv[0] + ' [-c <confsfile>] [-o <outputfile>] [-l <linecount>]'
     sflag = True
 
+    # Get parameters
     try:
         opts, args = getopt.getopt(argv[1:], "hc:o:l:")
     except getopt.GetoptError as err:
@@ -33,37 +34,43 @@ def main(argv):
         elif opt == '-l':
             line_count = int(arg)
 
+    # Prompt
     print(
         "confs_file = {0}\noutput_file = {1}\nline_count = {2}"
             .format(confs_file, output_file, line_count)
     )
 
     try:
+        # Load configuration
         confs_fp = open(confs_file, mode='r')
         confs = json.load(confs_fp)
 
+        # Assemble the string of each line of the test file
         fields = list(map(lambda x: '%' + x + 's', confs['Offsets']))
-        # print(fields)
-
         line_str = ''
         schar = confs['SampleCharacter']
         for f in fields:
             line_str += f % schar
-        line_str += endofline
 
+        # Create the output directory if it does not exist
         output_dir = os.path.dirname(output_file)
         if output_dir:
             os.mkdir(output_dir)
 
+        # Open the target file with the specified encoding
         output_fp = open(output_file, mode='w', encoding=confs['FixedWidthEncoding'])
         # print(output_fp.encoding)
 
+        # Put the content to the target file
         for i in range(line_count):
-            output_fp.write(line_str)
+            if (i + 1) == line_count:
+                output_fp.write(line_str)
+            else:
+                output_fp.write(line_str + endofline)
 
     except:
-        print("Unexpected error:", sys.exc_info()[0])
         sflag = False
+        print("Unexpected error:", sys.exc_info()[0])
         raise
 
     finally:
