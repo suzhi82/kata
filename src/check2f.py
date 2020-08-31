@@ -65,15 +65,19 @@ def main(argv):
             line_count += 1
             line2 = str.split(input_fp2.readline(), ',')
 
-            i = 0
-            idx = 0
-            for j in offsets:
-                j += i
-                if line2[idx].strip() != line1[i:j].strip():
-                    line_error.append(line_count)
-                    break
-                i = j
-                idx += 1
+            # Determine whether the number of fields is consistent
+            if len(line2) != len(offsets):
+                line_error.append(line_count)
+            else:
+                i = 0
+                idx = 0
+                for j in offsets:
+                    j += i
+                    if line2[idx].strip() != line1[i:j].strip():
+                        line_error.append(line_count)
+                        break
+                    i = j
+                    idx += 1
 
             line1 = input_fp1.readline()
 
