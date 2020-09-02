@@ -98,13 +98,13 @@ def main(argv):
         raise
 
     finally:
-        if 'confs_fp' in dir():
+        if 'confs_fp' in locals():
             confs_fp.close()
 
-        if 'input_fp1' in dir():
+        if 'input_fp1' in locals():
             input_fp1.close()
 
-        if 'input_fp2' in dir():
+        if 'input_fp2' in locals():
             input_fp2.close()
 
 

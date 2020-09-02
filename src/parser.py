@@ -108,13 +108,13 @@ def main(argv):
         raise
 
     finally:
-        if 'confs_fp' in dir():
+        if 'confs_fp' in locals():
             confs_fp.close()
 
-        if 'input_fp' in dir():
+        if 'input_fp' in locals():
             input_fp.close()
 
-        if 'output_fp' in dir():
+        if 'output_fp' in locals():
             output_fp.flush()
             output_fp.close()
 

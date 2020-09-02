@@ -74,10 +74,10 @@ def main(argv):
         raise
 
     finally:
-        if 'confs_fp' in dir():
+        if 'confs_fp' in locals():
             confs_fp.close()
 
-        if 'output_fp' in dir():
+        if 'output_fp' in locals():
             output_fp.flush()
             output_fp.close()
 
