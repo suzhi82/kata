@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-def gen_fixed(file_name):
+def gen_fixed(file_name='fixed.txt'):
     lines = [
         "â"*5 + "ú"*12 + "õ"*3 + "â"*2 + "ú"*13 + "õ"*7 + "â"*10 + "ú"*13 + "õ"*20 + "Ñ"*13 + "\n",
         "â"*5 + "ú"*12 + "õ"*3 + "â"*2 + "ú"*13 + "õ"*7 + "â"*10 + "ú"*13 + "õ"*20 + "Ñ"*13 + "\n",
@@ -14,4 +14,4 @@ def gen_fixed(file_name):
 
 
 if __name__ == "__main__":
-    gen_fixed('fixed.txt')
+    gen_fixed()

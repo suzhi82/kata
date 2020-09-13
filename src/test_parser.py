@@ -7,20 +7,14 @@ from parser import intercept, parser
 
 
 class TestParser(unittest.TestCase):
+    def setUp(self):
+        print("\nTesting", self.id())
 
-    # input non-exist file test
-    def test_case01(self):
-        with self.assertRaises(FileNotFoundError):
-            parser('file1', 'file2', 'file3')
-
-    # intercept string test
-    def test_case02(self):
-        line = "ABBCCCDDDD"
-        pos = [1, 2, 3, 4]
-        self.assertEqual(intercept(line, pos), ['A', 'BB', 'CCC', 'DDDD'])
+    def tearDown(self):
+        print("*"*60)
 
     # generate fixed width file test
-    def test_case03(self):
+    def test_gen_fixed(self):
         lines1 = [
             "â" * 5 + "ú" * 12 + "õ" * 3 + "â" * 2 + "ú" * 13 + "õ" * 7 + "â" * 10 + "ú" * 13 + "õ" * 20 + "Ñ" * 13 + "\n",
             "â" * 5 + "ú" * 12 + "õ" * 3 + "â" * 2 + "ú" * 13 + "õ" * 7 + "â" * 10 + "ú" * 13 + "õ" * 20 + "Ñ" * 13 + "\n",
@@ -32,8 +26,19 @@ class TestParser(unittest.TestCase):
             lines2 = f.readlines()
         self.assertEqual(lines1, lines2)
 
+    # intercept string test
+    def test_intercept(self):
+        line = "ABBCCCDDDD"
+        pos = [1, 2, 3, 4]
+        self.assertEqual(intercept(line, pos), ['A', 'BB', 'CCC', 'DDDD'])
+
+    # input non-exist file test
+    def test_parser_non_exist_file(self):
+        with self.assertRaises(FileNotFoundError):
+            parser('file1', 'file2', 'file3')
+
     # compare the content of fixed width file and delimited file test
-    def test_case04(self):
+    def test_parser_content(self):
         include_header = True
 
         with open('fixed.txt', mode='r', encoding='cp1252') as file1, \
