@@ -29,11 +29,7 @@ class TestParser(unittest.TestCase):
         file_name = 'fixed.txt'
         gen_fixed(file_name)
         with open(file_name, mode='r', encoding='cp1252') as f:
-            lines2 = []
-            line = f.readline()
-            while line:
-                lines2.append(line)
-                line = f.readline()
+            lines2 = f.readlines()
         self.assertEqual(lines1, lines2)
 
     # compare the content of fixed width file and delimited file
