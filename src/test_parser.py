@@ -32,7 +32,7 @@ class TestParser(unittest.TestCase):
             lines2 = f.readlines()
         self.assertEqual(lines1, lines2)
 
-    # compare the content of fixed width file and delimited file
+    # compare the content of fixed width file and delimited file test
     def test_case04(self):
         include_header = True
 
