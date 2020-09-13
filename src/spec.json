@@ -24,7 +24,6 @@
         "13"
     ],
     "FixedWidthEncoding": "windows-1252",
-    "SampleCharacter": "á",
     "IncludeHeader": "True",
     "DelimitedEncoding": "utf-8"
 }
