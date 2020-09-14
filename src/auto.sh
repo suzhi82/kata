@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-_dimg="mypython3:sz82"
+_dimg="mypython3:v3.6"
 _wkdir="/usr/src/app"
 _dcmd="docker run -it --rm -v $PWD:$_wkdir -w $_wkdir $_dimg python3"
 
