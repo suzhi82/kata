@@ -6,6 +6,12 @@ import json
 
 
 def intercept(line, pos):
+    """
+    Intercept string based on position
+    :param line: String to be intercepted
+    :param pos: Intercepted location
+    :return: String array of interception
+    """
     res, i = [], 0
     for j in pos:
         res.append(line[i:(j + i)])
@@ -14,6 +20,13 @@ def intercept(line, pos):
 
 
 def parser(conf_file, input_file, output_file):
+    """
+    Parse fixed-width file to delimited file
+    :param conf_file: Configuration file
+    :param input_file: Fixed-width file name
+    :param output_file: Delimited file name
+    :return: None
+    """
     with open(conf_file, mode='r', encoding='utf-8') as cf:
         conf = json.load(cf)
         input_encoding = conf['FixedWidthEncoding']
